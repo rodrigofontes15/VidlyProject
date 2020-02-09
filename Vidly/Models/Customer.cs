@@ -17,6 +17,7 @@ namespace Vidly.Models
 
         public MembershipType MembershipType { get; set; }
 
+        //byte type field makes it implicitly mandatory. nulable byte (byte?) would not make it mandatory anymore
         [Display(Name = "Membership Type")]
         public byte MembershipTypeId { get; set; }
 
