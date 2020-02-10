@@ -30,6 +30,7 @@ namespace Vidly.Controllers
 
         //if action modify data, dont use HTTPGET - model binding to viewModel. mvc binds view model to request data
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
         {
             if (! ModelState.IsValid)
