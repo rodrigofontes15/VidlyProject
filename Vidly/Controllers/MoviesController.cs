@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Vidly.Models;
 using Vidly.ViewModels;
 
+
 namespace Vidly.Controllers
 {
     public class MoviesController : Controller
@@ -49,7 +50,7 @@ namespace Vidly.Controllers
 
             var viewModel = new MovieFormViewModel
             {
-                Movie = movie,
+                Movie= movie,
                 Genres = _context.Genres.ToList()
             };
 
@@ -62,15 +63,27 @@ namespace Vidly.Controllers
             var genreTypes = _context.Genres.ToList();
             var viewModel = new MovieFormViewModel
             {
+
                 Genres = genreTypes
             };
             return View(viewModel);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult SaveMovie(Movie movie)
         {
-            if (movie.Id==0)
+            if (!ModelState.IsValid)
+            {
+                
+                var viewModel = new MovieFormViewModel()
+                {
+                    Movie = movie,
+                    Genres= _context.Genres.ToList()
+                };
+                return View("MovieForm", viewModel);
+            }
+            if (movie.Id == 0 || movie.Id == null) 
             {
                 movie.DateAdded = DateTime.Now;
             _context.Movies.Add(movie);
