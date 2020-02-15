@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -19,9 +20,12 @@ namespace Vidly.Controllers.Api
         }
 
         // GET /api/movies
-        public IEnumerable<MoviesDto> GetMovie()
+        public IHttpActionResult GetMovie()
         {
-            return _context.Movies.ToList().Select(Mapper.Map<Movie, MoviesDto>);
+            var moviesDto = _context.Movies.Include(m => m.Genre)
+                .ToList()
+                .Select(Mapper.Map<Movie, MoviesDto>);
+            return Ok(moviesDto);
         }
 
         // GET /api/movies/1
