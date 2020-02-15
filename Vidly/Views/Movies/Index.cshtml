@@ -33,7 +33,9 @@
 {
     <script>
         $(document).ready(function () {
-            $("#movies .js-delete").on("click", function () {
+            $("#movies").DataTable();
+
+            $("#movies").on("click", ".js-delete", function () {
                 var button = $(this)
                 bootbox.confirm("Are you sure?", function (result) {
                     if (result) {
