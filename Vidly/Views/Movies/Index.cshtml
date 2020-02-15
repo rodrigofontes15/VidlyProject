@@ -7,20 +7,47 @@
 
 <p>@Html.ActionLink("New Movie", "MovieForm", "Movies", new { @type="button", @class="btn btn-primary" })</p>
 
-<table class="table table-bordered table-hover" >
+<table id="movies" class="table table-bordered table-hover" >
     <thead>
         <tr>
             <th>Movie</th>
             <th>Genre</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var movie in Model)
         {
-            <tr>
-                <td>@Html.ActionLink(movie.Name, "EditMovie", "Movies", new { id = movie.Id }, null)</td>
-                <td>@movie.Genre.Name</td>
-            </tr>
+        <tr>
+            <td>@Html.ActionLink(movie.Name, "EditMovie", "Movies", new { id = movie.Id }, null)</td>
+            <td>@movie.Genre.Name</td>
+            <td><button data-movies-id="@movie.Id"class="btn-link js-delete">Delete
+                </button>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
+}
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#movies .js-delete").on("click", function () {
+                var button=$(this)
+                if (confirm("Are you sure?")) {
+                    $.ajax({
+                        url: "/api/movies/" + button.attr("data-movies-id"),
+                        method: "DELETE",
+                        success: function () {
+                            button.parents("tr").remove();
+                        }
+                    });
+                }
+            });
+
+        });
+    </script>
+    
+    }
+
