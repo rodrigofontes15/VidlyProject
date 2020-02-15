@@ -28,22 +28,26 @@
         }
     </tbody>
 </table>
-}
+
 @section scripts
 {
     <script>
         $(document).ready(function () {
             $("#movies .js-delete").on("click", function () {
-                var button=$(this)
-                if (confirm("Are you sure?")) {
-                    $.ajax({
-                        url: "/api/movies/" + button.attr("data-movies-id"),
-                        method: "DELETE",
-                        success: function () {
-                            button.parents("tr").remove();
-                        }
-                    });
-                }
+                var button = $(this)
+                bootbox.confirm("Are you sure?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/movies/" + button.attr("data-movies-id"),
+                            method: "DELETE",
+                            success: function () {
+                                button.parents("tr").remove();
+                            }
+                        });
+
+                    }
+                });
+         
             });
 
         });
