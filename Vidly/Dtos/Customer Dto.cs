@@ -18,7 +18,9 @@ namespace Vidly.Dtos
 
 
         //byte type field makes it implicitly mandatory. nulable byte (byte?) would not make it mandatory anymore
-    
+
+        public MembershipTypeDto MembershipType { get; set; }
+
         public byte MembershipTypeId { get; set; }
 
     
