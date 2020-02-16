@@ -244,6 +244,10 @@
     <Compile Include="Migrations\202002161158589_AddPhoneNumberApplicationUser.Designer.cs">
       <DependentUpon>202002161158589_AddPhoneNumberApplicationUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002161245008_UpdateAdminRole.cs" />
+    <Compile Include="Migrations\202002161245008_UpdateAdminRole.Designer.cs">
+      <DependentUpon>202002161245008_UpdateAdminRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -555,6 +559,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002161158589_AddPhoneNumberApplicationUser.resx">
       <DependentUpon>202002161158589_AddPhoneNumberApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002161245008_UpdateAdminRole.resx">
+      <DependentUpon>202002161245008_UpdateAdminRole.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
