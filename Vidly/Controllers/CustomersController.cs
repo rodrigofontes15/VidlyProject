@@ -4,12 +4,14 @@ using System.Linq;
 using System.Web.Mvc;
 using Vidly.Models;
 using Vidly.ViewModels;
+using System.Runtime.Caching;
 
 
 namespace Vidly.Controllers
 {
     public class CustomersController : Controller
     {
+
         private ApplicationDbContext _context;
 
         public CustomersController()
@@ -67,9 +69,10 @@ namespace Vidly.Controllers
 
         public ViewResult Index()
         {
+
             if (User.IsInRole(RoleName.CanManageMovie))
                 return View("Index");
-            return View("ReadOnlyIndex");
+                return View("ReadOnlyIndex");
 
         }
 
