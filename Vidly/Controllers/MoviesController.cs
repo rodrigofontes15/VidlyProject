@@ -77,15 +77,16 @@ namespace Vidly.Controllers
         {
             if (!ModelState.IsValid)
             {
-                
+
                 var viewModel = new MovieFormViewModel()
                 {
+                    
                     Movie = movie,
                     Genres= _context.Genres.ToList()
                 };
                 return View("MovieForm", viewModel);
             }
-            if (movie.Id == 0 || movie.Id == null) 
+            if (movie.Id == 0) 
             {
                 movie.DateAdded = DateTime.Now;
             _context.Movies.Add(movie);
