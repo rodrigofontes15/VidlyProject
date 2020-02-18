@@ -30,6 +30,11 @@ namespace Vidly.Controllers.Api
 
             foreach (var movie in movies)
             {
+                if (movie.NumberAvaliable == 0)
+                    return BadRequest("Not Avaliable");
+
+                movie.NumberAvaliable--;
+
                 var rental = new Rental
                 {
                     Customer = customer,
